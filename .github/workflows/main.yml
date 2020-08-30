@@ -56,8 +56,8 @@ jobs:
       run: cp "./languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
 
     # Copy theme settings
-    - name: Copy language setting
-      run: cp "_config_theme.yml" "themes/kratos-rebirth/_config.yml"
+#     - name: Copy language setting
+#       run: cp "_config_theme.yml" "themes/kratos-rebirth/_config.yml"
     
     # Edit theme settings
     - name: Edit theme settings
