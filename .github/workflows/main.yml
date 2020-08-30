@@ -51,13 +51,13 @@ jobs:
         sed -i "s|permalink: :year/:month/:day/:title/|permalink: posts/:title/|" "_config.yml"
         sed -i "s/theme: landscape/theme: kratos-rebirth/" "_config.yml"
     
-    # Copy language settings
-    - name: Copy language settings
-      run: cp "./languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
+#     Copy language settings
+#     - name: Copy language settings
+#       run: cp "./languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
 
-    # Copy theme settings
-#     - name: Copy language setting
-#       run: cp "_config_theme.yml" "themes/kratos-rebirth/_config.yml"
+#     Copy theme settings
+    - name: Copy language setting
+      run: cp "_config_theme.yml" "themes/kratos-rebirth/_config.yml"
     
     # Edit theme settings
     - name: Edit theme settings
