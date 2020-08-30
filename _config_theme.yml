@@ -1,0 +1,92 @@
+# Global
+site_analytics: 
+hoster: <a href="https://github.io" target="_blank">Github Pages</a>
+site_logo: /images/avatar.webp
+snow: true
+enableDark: true
+indexPostType: false
+
+# Top Menu
+menu:
+  index: /
+  archives: /archives/
+  sites:
+    submenu: true
+    author: https://www.youtube.com/mkproductionpresent
+   
+
+label:
+  index: <i class="fa fa-home"></i>Home
+  archives: <i class="fa fa-file"></i>Archive
+  sites:
+    submenu: <i class="fa fa-link"></i>Youtube
+    author: Channel
+
+# Footer
+group_link: 
+contact:
+  weibo: 
+  mail: minhlkproduction@gmail.com
+  facebook: mkproductionpresent
+  linkedin: 
+  fediverse:
+    instance: 
+    username: 
+  github: minhlk
+  rss:
+timenotice: This website is running
+icp: 
+psr:
+  
+# Post Page
+posts:
+  show_cc: true
+  donate: false
+  share: true
+  comments: disqus
+  
+# Disqus
+disqus:
+  shortname: productionmk
+
+# DisqusJS
+disqusjs:
+  shortname:  
+  sitename: 
+  api: 
+  apikey: 
+  admin: 
+  adminlabel: 
+
+# APlayer
+aplayer:
+  enabled: false
+  playlist: 
+  order: random
+
+# Widgets
+sidebar: right
+widgets:
+- about
+- toc
+- category
+- tagcloud
+- posts
+avatarUri: /images/avatar.webp
+
+# Fancybox
+fancybox: true
+
+# 搜索
+search:
+  enable: true
+  path: search.json
+  field: post # page | post | all. Default post
+  content: true # Include post | page content
+
+# JavaScript相关的配置
+# 由于Javascript被压缩后难以有效编辑与生成，因而为了简化操作，将相关的配置项在生成文件时以独立的json文件写出，调用时使用fetch API获取。
+jsconfig:
+  main:
+    picCDN: false
+    createTime: "2020-08-30 00:00:00"

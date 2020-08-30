@@ -1,0 +1,24 @@
+categories: Categories
+read_more: More
+read_full: More
+search: Search
+search_notice: What do you want to look for? o(*￣▽￣*)ブ
+search_submit: Find~
+search_notice_page: This is the search engine of %s~
+search_notice_keys: Please use spaces when searching for multiple keywords, such as "%s";
+search_notice_tags: You can also use these tags to try your luck~
+tag: Tag
+tagcloud: Tag aggregation
+prev: Previous page
+next: Next
+comment: Message
+archive: Article archive
+archive_count: There are currently %d articles (゜-゜)つロ Cheers~
+page: Page %d
+recent_posts: Recent posts
+newer: Previous
+older: Next
+share: Share
+rss_feed: RSS subscription
+category: Category
+copyright: All rights reserved
