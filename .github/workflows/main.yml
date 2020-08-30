@@ -1,0 +1,103 @@
+# Build the demo site when new changes are commited.
+
+name: Build MK Production Site
+
+# This will run when push events occur on master branch.
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of container that the job will run in
+    runs-on: ubuntu-latest
+    
+    # Environment virables
+    env:
+      SITE_URL: mkproduction.home.blog
+      AVATAR_LINK: https://www.gravatar.com/avatar/07f0b659888bd43c2c3856273b6ee2ce?s=250&d=mm&r=x
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+    # Setup Node.js env
+    - uses: actions/setup-node@v2.1.0
+      with:
+        node-version: '12.x'
+    
+    # Get Hexo test utils
+    - uses: actions/checkout@v2
+      with:
+        repository: 'hexojs/hexo-theme-unit-test'
+    
+    # Make dirs for themes
+    - name: Make dirs for themes
+      run: mkdir themes
+    
+    # Clone Kratos-Rebirth into themes dir
+    - name: Clone Kratos-Rebirth into themes dir
+      run: git clone --single-branch --branch master https://github.com/${GITHUB_REPOSITORY} ./themes/kratos-rebirth
+    
+    # Edit hexo site settings
+    - name: Edit Hexo site settings
+      run: |
+        sed -i "s/title: Hexo/title: MK Production/" "_config.yml"
+        sed -i "s/subtitle:/subtitle: MK Production/" "_config.yml"
+        sed -i "s/description:/description: Anime Games/" "_config.yml"
+        sed -i "s/author: John Doe/author: MinhLK/" "_config.yml"
+        sed -i "s|url: http://yoursite.com|url: https://${SITE_URL}|" "_config.yml"
+        sed -i "s|permalink: :year/:month/:day/:title/|permalink: posts/:title/|" "_config.yml"
+        sed -i "s/theme: landscape/theme: kratos-rebirth/" "_config.yml"
+    
+    # Copy language settings
+    - name: Copy language settings
+      run: cp "languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
+
+    # Copy theme settings
+    - name: Copy language setting
+      run: cp "_config_theme.yml" "themes/kratos-rebirth/_config.yml"
+    
+    # Edit theme settings
+    - name: Edit theme settings
+      run: |
+        sed -i "s|site_logo:|site_logo: ${AVATAR_LINK}|" "themes/kratos-rebirth/_config.yml"
+        sed -i "s|avatarUri: /images/avatar.webp|avatarUri: ${AVATAR_LINK}|" "themes/kratos-rebirth/_config.yml"
+    
+    # Set Pages CNAME file
+    - name: Set github pages CNAME file
+      run: |
+        touch "source/CNAME"
+        echo "${SITE_URL}" > source/CNAME
+    
+    # Install Hexo env
+    - name: Install Hexo environment
+      run: npm install
+        
+    # Setup git configs
+    - name: Setup git configs
+      run: |
+        git config --global user.name "Github Actions"
+        git config --global user.email "minhmeolavip@gmail.com"
+        # Set private key for deployment
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+    
+    # Get released page files
+    - name: Get released page files
+      run: git clone --single-branch --branch gh-pages git@github.com:${GITHUB_REPOSITORY} ./public
+    
+    # Hexo build demo site
+    - name: Hexo build demo site
+      run: npx hexo generate --force
+        
+    # Deploy demo site
+    - name: Deploy site
+      run: |
+        cd ./public
+        git add -A
+        git commit -m "Update MK Production Site at `date +'%Y-%m-%d %H:%M:%S'`"
+        git push
