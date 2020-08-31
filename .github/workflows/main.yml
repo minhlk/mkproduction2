@@ -51,17 +51,21 @@ jobs:
         sed -i "s|permalink: :year/:month/:day/:title/|permalink: posts/:title/|" "_config.yml"
         sed -i "s/theme: landscape/theme: kratos-rebirth/" "_config.yml"
   
+  # Make dirs for config files
+    - name: Make dirs for config files
+      run: mkdir mkconfig
+    
    # Get released page files
     - name: Get released mk production repo
-      run: git clone --single-branch --branch master git@github.com:${GITHUB_REPOSITORY} ./mkproduction2
+      run: git clone --single-branch --branch master https://github.com:${GITHUB_REPOSITORY} ./mkconfig/mkproduction2
       
 #     Copy language settings
     - name: Copy language settings
-      run: cp "./mkproduction2/languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
+      run: cp "./mkconfig/mkproduction2/languages/en-EN.yml" "themes/kratos-rebirth/languages/en-EN.yml"
 
 #     Copy theme settings
     - name: Copy language setting
-      run: cp "./mkproduction2/_config_theme.yml" "themes/kratos-rebirth/_config.yml"
+      run: cp "./mkconfig/mkproduction2/_config_theme.yml" "themes/kratos-rebirth/_config.yml"
     
     # Edit theme settings
     - name: Edit theme settings
