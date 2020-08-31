@@ -57,7 +57,7 @@ jobs:
     
    # Get released page files
     - name: Get released mk production repo
-      run: git clone --single-branch --branch master https://github.com:${GITHUB_REPOSITORY} ./mkconfig/mkproduction2
+      run: git clone --single-branch --branch master https://github.com/${GITHUB_REPOSITORY} ./mkconfig/mkproduction2
       
 #     Copy language settings
     - name: Copy language settings
