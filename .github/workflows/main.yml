@@ -74,10 +74,10 @@ jobs:
         sed -i "s|avatarUri: /images/avatar.webp|avatarUri: ${AVATAR_LINK}|" "themes/kratos-rebirth/_config.yml"
     
     # Set Pages CNAME file
-    - name: Set github pages CNAME file
-      run: |
-        touch "source/CNAME"
-        echo "${SITE_URL}" > source/CNAME
+#     - name: Set github pages CNAME file
+#       run: |
+#         touch "source/CNAME"
+#         echo "${SITE_URL}" > source/CNAME
     
     # Install Hexo env
     - name: Install Hexo environment
