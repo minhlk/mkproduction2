@@ -16,7 +16,7 @@ jobs:
     
     # Environment virables
     env:
-      SITE_URL: mkproduction.home.blog
+      SITE_URL: minhlk.github.io/mkproduction2
       AVATAR_LINK: https://www.gravatar.com/avatar/07f0b659888bd43c2c3856273b6ee2ce?s=250&d=mm&r=x
 
     # Steps represent a sequence of tasks that will be executed as part of the job
